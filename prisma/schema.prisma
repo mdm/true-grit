@@ -64,3 +64,23 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+// Domain models
+
+model Habit {
+  id             String       @id @default(cuid())
+  title          String
+  recurrenceRule String
+  windowDays     Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  completions     Completion[]
+}
+
+model Completion {
+  id        String   @id @default(cuid())
+  habit     Habit    @relation(fields: [habitId], references: [id])
+  habitId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
