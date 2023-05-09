@@ -72,9 +72,9 @@ model Habit {
   title          String
   recurrenceRule String
   windowDays     Int
+  completions    Completion[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  completions     Completion[]
 }
 
 model Completion {
